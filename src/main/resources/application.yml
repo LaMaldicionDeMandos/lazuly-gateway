@@ -1,0 +1,44 @@
+#Default port is 5555 server:
+#Para refrescar la configuracion en caliente, hay que hacer un POST a /refresh
+management:
+  security:
+    enabled: false
+spring:
+  application:
+    name: lazuly-gateway
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${HOST}:8761/eureka/
+hystrix: # Configuro timeout para que no rompa si un servicio tarda mucho
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+zuul:
+  sensitiveHeaders: Cookie,Set-Cookie #Es una lista negra, al no estar Authorization, le estoy diciendo que propague el header
+  ignoreSecurityHeaders: false
+  ignore-services: '*'
+  debug:
+    request: true
+  routes:
+    lazuly-auth:
+      path: /auth/**
+
+---
+spring:
+  profiles: developer
+server:
+  port: 5555
+
+---
+spring:
+  profiles: staging
+server:
+  port: ${PORT}
