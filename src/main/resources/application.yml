@@ -30,6 +30,8 @@ zuul:
   routes:
     lazuly-auth:
       path: /auth/**
+    lazuly-email:
+      path: /mail/**
 
 ---
 spring:
