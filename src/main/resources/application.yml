@@ -33,8 +33,7 @@ zuul:
     lazuly-email:
       path: /mail/**
     lazuly-users:
-          path: /users/**
-
+      path: /users/**
 ---
 spring:
   profiles: developer
