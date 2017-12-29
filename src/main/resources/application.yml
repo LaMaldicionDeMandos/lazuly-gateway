@@ -32,6 +32,8 @@ zuul:
       path: /auth/**
     lazuly-email:
       path: /mail/**
+    lazuly-users:
+          path: /users/**
 
 ---
 spring:
